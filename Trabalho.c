@@ -1,5 +1,9 @@
-/*git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"*/
+/*criar funçao ordenar carta
+criar função ordenar naipe
+criar função verificar o resto dos tipos de maos
+verificar quem ganhou
+otimizar tudo*/
+
 #include <stdio.h>
 
 typedef enum {
@@ -49,6 +53,23 @@ int stringparainteiro(char vetor[3]){
     return final;
 }
 
+void ordernar(t_carta cartas[5]){
+    
+    for(int i;i<5;i++){
+        t_carta aux;
+        for(int i2=i+1;i2<5;i2++){
+            if(cartas[i].valor>cartas[i2].valor){
+                aux.valor=cartas[i].valor;
+                aux.naipe=cartas[i].naipe;
+                cartas[i].valor=cartas[i2].valor;
+                cartas[i].naipe=cartas[i2].naipe;
+                cartas[i2].valor=aux.valor;
+                cartas[i2].naipe=aux.naipe;
+            }
+        }
+    }
+}
+
 int verificarpartrincaquadrafullhouse(t_carta cartas[5]){
     int qpar=0,qtrinca=0,qquadra=0,valor=0;
     for(int i;i<5;i++){
@@ -82,7 +103,7 @@ int verificarpartrincaquadrafullhouse(t_carta cartas[5]){
     return valor;
 }
 
-int valorfinalcartas(t_carta carta){
+int valorfinal(t_carta carta){
 
 
 
