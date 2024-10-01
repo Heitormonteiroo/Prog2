@@ -54,17 +54,13 @@ int stringparainteiro(char vetor[3]){
 }
 
 void ordernar(t_carta cartas[5]){
-    
-    for(int i;i<5;i++){
-        t_carta aux;
-        for(int i2=i+1;i2<5;i2++){
-            if(cartas[i].valor>cartas[i2].valor){
-                aux.valor=cartas[i].valor;
-                aux.naipe=cartas[i].naipe;
-                cartas[i].valor=cartas[i2].valor;
-                cartas[i].naipe=cartas[i2].naipe;
-                cartas[i2].valor=aux.valor;
-                cartas[i2].naipe=aux.naipe;
+    for(int i = 0; i < 5; i++){
+       t_carta aux;
+       for(int j = i + 1; j < 5; j++){
+           if(cartas[i].valor > cartas[j].valor){
+               aux = cartas[i];
+               cartas[i] = cartas[j];
+               cartas[j] = aux;
             }
         }
     }
