@@ -18,6 +18,11 @@ int valor;
 t_naipe naipe;
 } t_carta;
 
+typedef struct {
+int valor;
+int naipe;
+} t_cartacomparar;
+
 typedef enum {
 PAR = 15,
 DOISPARES=16,
@@ -53,7 +58,30 @@ int stringparainteiro(char vetor[3]){
     return final;
 }
 
-void ordernar(t_carta cartas[5]){
+void ordenarnaipe(t_carta cartas[5]){
+    for(int i = 0; i < 5; i++){
+        t_carta aux;
+        for(int j=i+1;j<5;j++){
+           if(cartas[i].valor == cartas[j].valor){
+                if (cartas[j].naipe=='P'){
+                    aux.naipe = cartas[i].naipe;
+                    cartas[i].naipe = cartas[j].naipe;
+                    cartas[j].naipe = aux.naipe;
+                }else if(cartas[j].naipe=='O'&& cartas[i].naipe!='P'){
+                    aux.naipe = cartas[i].naipe;
+                    cartas[i].naipe = cartas[j].naipe;
+                    cartas[j].naipe = aux.naipe;
+                }else if(cartas[j].naipe=='C' && cartas[i].naipe!='P' && cartas[i].naipe!='O'){
+                    aux.naipe = cartas[i].naipe;
+                    cartas[i].naipe = cartas[j].naipe;
+                    cartas[j].naipe = aux.naipe;
+                }
+            } 
+        }
+    }
+}
+/*2º Naipe, na ordem paus (P ♣) (menor), ouros (O ♢), copas (C ♡) e espadas (E ♠) (maior).*/
+void ordenar(t_carta cartas[5]){
     for(int i = 0; i < 5; i++){
        t_carta aux;
        for(int j = i + 1; j < 5; j++){
@@ -64,15 +92,16 @@ void ordernar(t_carta cartas[5]){
             }
         }
     }
+    ordenarnaipe(cartas);
 }
 
-int verificarpartrincaquadrafullhouse(t_carta cartas[5]){
+int verificarpares(t_carta cartas[5]){
     int qpar=0,qtrinca=0,qquadra=0,valor=0;
     for(int i;i<5;i++){
         int contador=1;
         int aux=cartas[i].valor;
-        for(int i2=i+1;i2<5;i2++){
-            if(aux==cartas[i2].valor){
+        for(int j=i+1;j<5;j++){
+            if(aux==cartas[j].valor){
                 contador+=1;
             }
         }
@@ -104,28 +133,41 @@ int valorfinal(t_carta carta){
 
 
 }
-/*J E Q E A C K C 1 C*/
 
-int main() {  
-    
-  char vetor[3];  
+int main() {    
   int n;
     scanf("%d",&n);
     for(int i=0;i<n;i++){
         char aux[3];
         t_carta pessoa1[5],pessoa2[5];
-        for (int i2=0;i2<5;i2++){
-            scanf("%s %c",&aux,&pessoa1[i2].naipe);
-            pessoa1[i2].valor=stringparainteiro(aux);
+        for (int j=0;j<5;j++){
+            scanf("%s %c",&aux,&pessoa1[j].naipe);
+            pessoa1[j].valor=stringparainteiro(aux);
         }
-        for (int i2=0;i2<5;i2++){
-            scanf("%s %c",&aux,&pessoa2[i2].naipe);
-            pessoa2[i2].valor=stringparainteiro(aux);
+        for (int j=0;j<5;j++){
+            scanf("%s %c",&aux,&pessoa2[j].naipe);
+            pessoa2[j].valor=stringparainteiro(aux);
         }
-        for (int i2=0;i2<5;i2++){
-            printf("%d %c ",pessoa1[i2].valor,pessoa1[i2].naipe);
-            printf("%d %c ",pessoa2[i2].valor,pessoa2[i2].naipe);
+        ordenar(pessoa1);
+        ordenar(pessoa2);
+        for (int j=0;j<5;j++){
+            if(j==4){
+                printf("%d %c\n",pessoa1[j].valor,pessoa1[j].naipe);
+            }else{
+            printf("%d %c ",pessoa1[j].valor,pessoa1[j].naipe);
+        }
         }
     }
     return 0;
 }
+/*5
+6 P 7 O 3 P 9 C J E
+10 C 5 E 4 E 3 E 2 E
+K C 2 P 5 O 7 P 10 C
+6 P 9 O K E 3 P 4 C
+8 C 9 C 10 O J P Q E
+5 E 4 E 3 E 7 E 6 E
+5 C 6 O 2 O 3 O 4 P
+K C 10 C J C A P Q C
+A C 7 E 5 E 7 O 7 P
+4 E A O 3 E 3 P 4 C*/
