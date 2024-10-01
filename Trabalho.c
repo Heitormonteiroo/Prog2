@@ -49,7 +49,11 @@ int main() {
         }
         for (int i2=0;i2<5;i2++){
             printf("%d %c ",pessoa1[i2].valor,pessoa1[i2].naipe);
-    }
+            
+        }
+        for (int i2=0;i2<5;i2++){
+            printf("%d %c ",pessoa2[i2].valor,pessoa2[i2].naipe);
+        }
     }
     return 0;
 }
