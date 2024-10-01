@@ -1,8 +1,0 @@
-modules = ["c-clang14", "cpp-clang14"]
-run = "r"
-
-[nix]
-channel = "stable-24_05"
-
-[deployment]
-run = ["sh", "-c", "r"]
