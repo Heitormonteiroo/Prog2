@@ -1,6 +1,4 @@
-/*criar funçao ordenar carta
-criar função ordenar naipe
-criar função verificar o resto dos tipos de maos
+/*criar funcao verificar o resto dos tipos de maos
 verificar quem ganhou
 otimizar tudo*/
 
@@ -24,13 +22,13 @@ int naipe;
 } t_cartacomparar;
 
 typedef enum {
-PAR = 15,
-DOISPARES=16,
-TRINCA=17,
+PAR = 15,/*OK*/
+DOISPARES=16,/*OK*/
+TRINCA=17,/*OK*/
 SEQUENCIA=18,
 FLUSH=19,
-FULL=20,
-QUADRA=21,
+FULL=20,/*OK*/
+QUADRA=21,/*OK*/
 SFLUSH=22,
 RFLUSH=23
 } t_valor_m;
@@ -92,7 +90,7 @@ void ordenar(t_carta cartas[5]){
             }
         }
     }
-    ordenarnaipe(cartas);
+    ordenarnaipe(cartas);  
 }
 
 int verificarpares(t_carta cartas[5]){
@@ -126,6 +124,15 @@ int verificarpares(t_carta cartas[5]){
         valor=PAR;
     }
     return valor;
+}
+
+int verificarflush(t_carta[5]){
+    int qflush;
+    for(int i;i<5;i++){
+        
+    }
+
+
 }
 
 int valorfinal(t_carta carta){
