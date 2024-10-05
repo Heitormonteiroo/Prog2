@@ -6,7 +6,6 @@
 *
 */
 
-/*transformar 11 12 13 14 em letra de volta*/
 #include <stdio.h>
 
 typedef enum {
