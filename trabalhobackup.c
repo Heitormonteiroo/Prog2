@@ -1,12 +1,3 @@
-/**************************************************
-*
-* Heitor Monteiro Padovese
-* Trabalho 1
-* Professor(a): Diego Rubert
-*
-*/
-
-
 #include <stdio.h>
 
 typedef enum {
@@ -179,14 +170,14 @@ t_mao valorfinal(t_carta cartas[5]){
     return final;
 }
 
-int main() {   
+int main() {    
   int n;
     scanf("%d",&n);
     for(int i=0;i<n;i++){
         char aux[3];
         char aux2;
         t_carta pessoa1[5],pessoa2[5];
-        t_mao maofinal1,maofinal2;
+        t_mao final1,final2;
         for (int j=0;j<5;j++){
             scanf("%s %c", aux, &aux2);
             pessoa1[j].valor = stringparainteiro(aux);
@@ -199,31 +190,24 @@ int main() {
         }
         ordenar(pessoa1);
         ordenar(pessoa2);
-        maofinal1=valorfinal(pessoa1);
-        maofinal2=valorfinal(pessoa2);
-        if(maofinal1.valor>maofinal2.valor){
-            for (int j=0;j<5;j++){
-            if(j==0){
-                printf("1 %d %c ",maofinal1.cartas[j].valor,maofinal1.cartas[j].naipe);
-            }else if(j==4){
-                printf("%d %c\n",maofinal1.cartas[j].valor,maofinal1.cartas[j].naipe);
+        final1=valorfinal(pessoa1);
+        final2=valorfinal(pessoa2);
+        for (int j=0;j<5;j++){
+            if(j==4){
+                printf("%d %c\n",pessoa1[j].valor,pessoa1[j].naipe);
             }else{
-            printf("%d %c ",maofinal1.cartas[j].valor,maofinal1.cartas[j].naipe);
-            }
-            }
-        }else if(maofinal1.valor<maofinal2.valor){
-            for (int j=0;j<5;j++){
-            if(j==0){
-                printf("2 %d %c ",maofinal2.cartas[j].valor,maofinal2.cartas[j].naipe);
-            }else if(j==4){
-                printf("%d %c\n",maofinal2.cartas[j].valor,maofinal2.cartas[j].naipe);
-            }else{
-            printf("%d %c ",maofinal2.cartas[j].valor,maofinal2.cartas[j].naipe);
-            }
-            }
-        }else{
-                printf("E\n");
-            }       
+            printf("%d %c ",pessoa1[j].valor,pessoa1[j].naipe);
         }
+        }
+        printf("valor final:%d\n",final1.valor);
+         for (int j=0;j<5;j++){
+            if(j==4){
+                printf("%d %c\n",pessoa2[j].valor,pessoa2[j].naipe);
+            }else{
+            printf("%d %c ",pessoa2[j].valor,pessoa2[j].naipe);
+        }
+        }
+        printf("valor final:%d\n",final2.valor);
+    }
     return 0;
 }
