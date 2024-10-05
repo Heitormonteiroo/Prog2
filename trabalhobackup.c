@@ -170,6 +170,26 @@ t_mao valorfinal(t_carta cartas[5]){
     return final;
 }
 
+char printar(int valor){
+    char final[3];
+    if(valor==14){
+        final[0]='A';
+    }else if(valor==13){
+        final[0]='K';
+    }else if(valor==12){
+        final[0]='Q';
+    }else if(valor==11){
+        final[0]='J';
+    }else if(valor==10){
+        final[0]='1';
+        final[1]='0';
+
+    }else{
+        final[0]=(valor+'0');
+    }
+    return final;
+}
+
 int main() {    
   int n;
     scanf("%d",&n);
@@ -194,9 +214,9 @@ int main() {
         final2=valorfinal(pessoa2);
         for (int j=0;j<5;j++){
             if(j==4){
-                printf("%d %c\n",pessoa1[j].valor,pessoa1[j].naipe);
+                printf("%s %c\n",pessoa1[j].valor,pessoa1[j].naipe);
             }else{
-            printf("%d %c ",pessoa1[j].valor,pessoa1[j].naipe);
+            printf("%s %c ",pessoa1[j].valor,pessoa1[j].naipe);
         }
         }
         printf("valor final:%d\n",final1.valor);

@@ -6,7 +6,7 @@
 *
 */
 
-
+/*transformar 11 12 13 14 em letra de volta*/
 #include <stdio.h>
 
 typedef enum {
@@ -179,6 +179,33 @@ t_mao valorfinal(t_carta cartas[5]){
     return final;
 }
 
+void printar(int j,t_mao mao){
+    char final[3];
+    if(mao.cartas[j].valor==14){
+        final[0]='A';
+    }else if(mao.cartas[j].valor==13){
+        final[0]='K';
+    }else if(mao.cartas[j].valor==12){
+        final[0]='Q';
+    }else if(mao.cartas[j].valor==11){
+        final[0]='J';
+    }else if(mao.cartas[j].valor==10){
+        final[0]='1';
+        final[1]='0';
+
+    }else{
+        final[0]=(mao.cartas[j].valor+'0');
+    }
+    if(j==0){
+        printf("1 %s %c ",final,mao.cartas[j].naipe);
+    }else if(j==4){
+        printf("%s %c\n",final,mao.cartas[j].naipe);
+    }else{
+        printf("%s %c ",final,mao.cartas[j].naipe);
+    }
+
+}
+
 int main() {   
   int n;
     scanf("%d",&n);
@@ -203,23 +230,11 @@ int main() {
         maofinal2=valorfinal(pessoa2);
         if(maofinal1.valor>maofinal2.valor){
             for (int j=0;j<5;j++){
-            if(j==0){
-                printf("1 %d %c ",maofinal1.cartas[j].valor,maofinal1.cartas[j].naipe);
-            }else if(j==4){
-                printf("%d %c\n",maofinal1.cartas[j].valor,maofinal1.cartas[j].naipe);
-            }else{
-            printf("%d %c ",maofinal1.cartas[j].valor,maofinal1.cartas[j].naipe);
-            }
+            printar(j,maofinal1);
             }
         }else if(maofinal1.valor<maofinal2.valor){
             for (int j=0;j<5;j++){
-            if(j==0){
-                printf("2 %d %c ",maofinal2.cartas[j].valor,maofinal2.cartas[j].naipe);
-            }else if(j==4){
-                printf("%d %c\n",maofinal2.cartas[j].valor,maofinal2.cartas[j].naipe);
-            }else{
-            printf("%d %c ",maofinal2.cartas[j].valor,maofinal2.cartas[j].naipe);
-            }
+            printar(j,maofinal2);
             }
         }else{
                 printf("E\n");
