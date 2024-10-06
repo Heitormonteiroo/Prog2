@@ -2,7 +2,7 @@
 *
 * Heitor Monteiro Padovese
 * Trabalho 1
-* Professor(a): Diego Rubert
+* Professor(a): Diego Padilha Rubert
 *
 */
 
