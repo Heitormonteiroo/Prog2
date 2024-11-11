@@ -1,0 +1,35 @@
+#include <stdio.h>
+#define alturaminima 20
+#define intervalo (231-20)
+
+int main() {
+    int nc;
+    scanf("%d", &nc);
+    for (int i = 0; i < nc; i++) {
+        int n;
+        scanf("%d", &n);
+        int contagem[intervalo] = {0};
+        unsigned char altura;
+        for (int j = 0; j < n; j++) {
+            scanf("%hhu", &altura);
+            contagem[altura - alturaminima]++;
+        }
+        int primeiro = 1;
+        for (int j = 0; j < intervalo; j++) {
+            while (contagem[j] > 0) {
+                if(primeiro==1){
+                printf("%d", j + alturaminima);
+                primeiro = 0;
+                contagem[j]--;
+                }
+                else{
+                    printf(" %d", j + alturaminima);
+                    contagem[j]--;
+                }
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
